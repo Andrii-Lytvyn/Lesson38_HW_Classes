@@ -12,7 +12,7 @@ public class Main {
       String line = br.readLine();
       Pet.addPet(line);
     }
-  //  Pet.printAnimal(Pet.);
+    Pet.printAnimalArray(Pet.animalBase);
   }
 }
 
