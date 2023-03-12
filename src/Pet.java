@@ -7,6 +7,9 @@
 Формат входных данных: количество строк с записями о домашних животных, затем сами записи в
 описанном формате.*/
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.PublicKey;
 
 enum Kind {
@@ -16,6 +19,7 @@ enum Kind {
 }
 
 public class Pet {
+  final public static String SEP = ",";
   Kind type;
   String name;
   String birthDay;
@@ -27,6 +31,40 @@ public class Pet {
     this.weight = weight;
     this.birthDay = birthDay;
   }
+
+  public Pet(Kind type, String name) {
+    this.type = type;
+    this.name = name;
+
+  }
+
+  public Pet(Kind type, String name, double weight) {
+    this.type = type;
+    this.name = name;
+    this.weight = weight;
+  }
+
+  public static void addPet(String line) {
+    int indexOf = line.lastIndexOf(SEP);
+    String temp, temp2;
+    Kind kindToLook;
+    temp = line.substring(0, indexOf);
+    try {
+      kindToLook = Kind.valueOf(temp.toUpperCase());
+    } catch (IllegalArgumentException e) {
+      kindToLook = Kind.OTHER;
+    }
+    temp2 = line.substring(indexOf + 1);
+    Pet newPat = new Pet(kindToLook, temp2);
+    System.out.println(newPat);
+  }
+
+
+//
+//  статический метод для создания животного при прочтении данных из
+//  строки "dog,кличка", "cat,кличка,вес", "turtle,кличка,вес,дата рождения
+//
+
 
   public String getName() {
     return name;
