@@ -1,16 +1,9 @@
 /*Задача 1
-
-
 статический метод для создания животного при прочтении данных из строки "dog,кличка",
 "cat,кличка,вес", "turtle,кличка,вес,дата рождения".
 Создать класс Main, в котором данные будут считываться с консоли и красиво выводиться на экран.
 Формат входных данных: количество строк с записями о домашних животных, затем сами записи в
 описанном формате.*/
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.PublicKey;
 
 enum Kind {
   DOG,
@@ -35,7 +28,6 @@ public class Pet {
   public Pet(Kind type, String name) {
     this.type = type;
     this.name = name;
-
   }
 
   public Pet(Kind type, String name, double weight) {
@@ -44,27 +36,41 @@ public class Pet {
     this.weight = weight;
   }
 
-  public static void addPet(String line) {
-    int indexOf = line.lastIndexOf(SEP);
-    String temp, temp2;
+  public static void addPet(String line,int n) {
+    String[] lineArray = line.split(SEP);
+    double tempWeight;
+    String tempKind, tempName, tempBirth;
+    int counter = lineArray.length;
+    tempKind = lineArray[0];
     Kind kindToLook;
-    temp = line.substring(0, indexOf);
     try {
-      kindToLook = Kind.valueOf(temp.toUpperCase());
+      kindToLook = Kind.valueOf(tempKind.toUpperCase());
     } catch (IllegalArgumentException e) {
       kindToLook = Kind.OTHER;
     }
-    temp2 = line.substring(indexOf + 1);
-    Pet newPat = new Pet(kindToLook, temp2);
-    System.out.println(newPat);
+//todo что куда
+    if (counter == 2) {
+
+      tempName = lineArray[1];
+      Pet newPat = new Pet(kindToLook, tempName);
+      System.out.println(newPat);
+    }
+    if (counter == 3) {
+      tempName = lineArray[1];
+      tempWeight = Double.parseDouble(lineArray[2]);
+      Pet newPat2 = new Pet(kindToLook, tempName, tempWeight);
+      System.out.println(newPat2);
+    }
+
+    if (counter == 4) {
+      tempName = lineArray[1];
+      tempWeight = Double.parseDouble(lineArray[2]);
+      tempBirth = lineArray[3];
+      Pet newPat3 = new Pet(kindToLook, tempName, tempBirth, tempWeight);
+      System.out.println(newPat3.type + " " + newPat3.name + " " + newPat3.weight + " " + newPat3.birthDay);
+    }
+
   }
-
-
-//
-//  статический метод для создания животного при прочтении данных из
-//  строки "dog,кличка", "cat,кличка,вес", "turtle,кличка,вес,дата рождения
-//
-
 
   public String getName() {
     return name;
