@@ -5,6 +5,11 @@
 Формат входных данных: количество строк с записями о домашних животных, затем сами записи в
 описанном формате.*/
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 enum Kind {
   DOG,
   CAT,
@@ -36,11 +41,18 @@ public class Pet {
     this.weight = weight;
   }
 
-  public static void addPet(String line,int n) {
+  public static ArrayList<Pet> animalBase = new ArrayList<>();
+
+  public static void addPet(String line) {
+
     String[] lineArray = line.split(SEP);
+
     double tempWeight;
     String tempKind, tempName, tempBirth;
+
     int counter = lineArray.length;
+
+    //тип животного
     tempKind = lineArray[0];
     Kind kindToLook;
     try {
@@ -48,26 +60,52 @@ public class Pet {
     } catch (IllegalArgumentException e) {
       kindToLook = Kind.OTHER;
     }
-//todo что куда
-    if (counter == 2) {
 
+    //Запись с одной запятой
+    if (counter == 2) {
       tempName = lineArray[1];
-      Pet newPat = new Pet(kindToLook, tempName);
-      System.out.println(newPat);
+      Pet newPet = new Pet(kindToLook, tempName);
+      animalBase.add(newPet);
+
+      printAnimal(newPet);
     }
+
+    //Запись с двумя запятыми
     if (counter == 3) {
       tempName = lineArray[1];
       tempWeight = Double.parseDouble(lineArray[2]);
-      Pet newPat2 = new Pet(kindToLook, tempName, tempWeight);
-      System.out.println(newPat2);
-    }
+      Pet newPet2 = new Pet(kindToLook, tempName, tempWeight);
+      animalBase.add(newPet2);
 
+      printAnimal(newPet2);
+    }
+    //Запись с тремя запятыми
     if (counter == 4) {
       tempName = lineArray[1];
       tempWeight = Double.parseDouble(lineArray[2]);
       tempBirth = lineArray[3];
       Pet newPat3 = new Pet(kindToLook, tempName, tempBirth, tempWeight);
-      System.out.println(newPat3.type + " " + newPat3.name + " " + newPat3.weight + " " + newPat3.birthDay);
+      animalBase.add(newPat3);
+
+      printAnimal(newPat3);
+
+
+    }
+
+
+  }
+
+  public static void printAnimal(Pet newPet) {
+    if (newPet.birthDay != null) {
+      System.out.println("Вид животного: " + newPet.type + ". Кличка: " + newPet.name + ". Вес: " +
+          newPet.weight + ". День рождения: " + newPet.birthDay);
+    }
+    if (newPet.weight == 0) {
+      System.out.println("Вид животного: " + newPet.type + " Кличка: " + newPet.name);
+    }
+    if (newPet.weight != 0 && newPet.birthDay == null) {
+      System.out.println("Вид животного: " + newPet.type + ". Кличка: " + newPet.name + ". Вес: " +
+          newPet.weight);
     }
 
   }

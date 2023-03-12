@@ -5,9 +5,21 @@ import java.io.InputStreamReader;
 public class Main {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println("Введите количество записей");
+    System.out.print("Введите количество записей: ");
     int n = Integer.parseInt(br.readLine());
-    String line = br.readLine();
-    Pet.addPet(line,n);
+    for (int i = 0; i < n; i++) {
+      System.out.println("Введите запись №: " + (i + 1));
+      String line = br.readLine();
+      Pet.addPet(line);
+    }
+  //  Pet.printAnimal(Pet.);
   }
 }
+
+/*
+cat,Josh
+dog,Hansa,12.4
+turtle,Jerry,1,1 Januar
+
+
+ */
