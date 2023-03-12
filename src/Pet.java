@@ -6,9 +6,6 @@
 описанном формате.*/
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 enum Kind {
   DOG,
@@ -45,10 +42,7 @@ public class Pet {
 
   // public static Map<Integer, Pet> animalMap = new HashMap<>();
   public static void addPet(String line) {
-
-    int mapCounter = 0;
     String[] lineArray = line.split(SEP);
-
     double tempWeight;
     String tempKind, tempName, tempBirth;
 
@@ -65,45 +59,32 @@ public class Pet {
 
     //Запись с одной запятой
     if (counter == 2) {
-      ++mapCounter;
-
       tempName = lineArray[1];
       Pet newPet = new Pet(kindToLook, tempName);
       animalBase.add(newPet);
-//animalMap.put(mapCounter,newPet);
-      // printAnimal(newPet);
-
     }
 
     //Запись с двумя запятыми
     if (counter == 3) {
-      ++mapCounter;
       tempName = lineArray[1];
       tempWeight = Double.parseDouble(lineArray[2]);
       Pet newPet2 = new Pet(kindToLook, tempName, tempWeight);
       animalBase.add(newPet2);
-      // animalMap.put(mapCounter,newPet2);
-      //  printAnimal(newPet2);
     }
+
     //Запись с тремя запятыми
     if (counter == 4) {
-      ++mapCounter;
       tempName = lineArray[1];
       tempWeight = Double.parseDouble(lineArray[2]);
       tempBirth = lineArray[3];
-      Pet newPat3 = new Pet(kindToLook, tempName, tempBirth, tempWeight);
-      animalBase.add(newPat3);
-      // animalMap.put(mapCounter,newPat3);
-      // printAnimal(newPat3);
-
+      Pet newPet3 = new Pet(kindToLook, tempName, tempBirth, tempWeight);
+      animalBase.add(newPet3);
 
     }
-
-
   }
 
   public static void printAnimalArray(ArrayList<Pet> animalBase) {
-
+    System.out.println();
     for (int i = 0; i < animalBase.size(); i++) {
       System.out.println("Вид: " + animalBase.get(i).type);
       System.out.println("Имя: " + animalBase.get(i).name);
@@ -115,23 +96,8 @@ public class Pet {
       }
       System.out.println();
     }
-
-//
-//
-//    if (newPet.birthDay != null) {
-//      System.out.println("Вид животного: " + newPet.type + ". Кличка: " + newPet.name + ". Вес: " +
-//          newPet.weight + ". День рождения: " + newPet.birthDay);
-//    }
-//    if (newPet.weight == 0) {
-//      System.out.println("Вид животного: " + newPet.type + " Кличка: " + newPet.name);
-//    }
-//    if (newPet.weight != 0 && newPet.birthDay == null) {
-//      System.out.println("Вид животного: " + newPet.type + ". Кличка: " + newPet.name + ". Вес: " +
-//          newPet.weight);
-//    }
   }
-
-
+/*
   public static void printAnimal(Pet newPet) {
     if (newPet.birthDay != null) {
       System.out.println("Вид животного: " + newPet.type + ". Кличка: " + newPet.name + ". Вес: " +
@@ -144,7 +110,7 @@ public class Pet {
       System.out.println("Вид животного: " + newPet.type + ". Кличка: " + newPet.name + ". Вес: " +
           newPet.weight);
     }
-  }
+  }*/
 
   public String getName() {
     return name;

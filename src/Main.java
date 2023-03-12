@@ -16,10 +16,8 @@ public class Main {
   }
 }
 
-/*
+/*3
 cat,Josh
 dog,Hansa,12.4
 turtle,Jerry,1,1 Januar
-
-
  */
